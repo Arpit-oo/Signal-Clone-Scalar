@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+backend/data/
+backend/*.db
+backend/uploads/
+
+# Node
+node_modules/
+.next/
+.next-e2e/
+out/
+*.tsbuildinfo
+next-env.d.ts
+
+# Env
+.env
+.env.local
+!.env.example
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Local dependency caches, service logs, and browser test output
+.cache/
+.runtime/
+frontend/test-results/
+frontend/playwright-report/
+
+# Assignment brief (local only)
+Scaler_SDE_Fullstack_Assignment_-_Signal_Clone.txt
