@@ -2,7 +2,7 @@
 
 A Signal-inspired messenger built for the **Scaler SDE Fullstack Assignment** by **Arpit Walia** ([awalia_be23@thapar.edu](mailto:awalia_be23@thapar.edu)). Next.js/TypeScript, FastAPI, SQLite, and authenticated WebSockets power persistent direct/group chats, contacts, receipts, typing, Stories, and one-to-one voice/video calls.
 
-**Repository:** [Arpit-oo/signal-clone](https://github.com/Arpit-oo/signal-clone). Application code is independently implemented. Phone verification is mocked and messages are stored on the server without end-to-end encryption, as allowed by the brief.
+**Repository:** [Arpit-oo/Signal-Clone-Scalar](https://github.com/Arpit-oo/Signal-Clone-Scalar). Application code is independently implemented. Phone verification is mocked and messages are stored on the server without end-to-end encryption, as allowed by the brief.
 
 ## Quick start: Docker
 
@@ -238,7 +238,7 @@ Final local validation on **2026-10-09**:
 
 | Brief deliverable | Location / status |
 | --- | --- |
-| Public repository containing `frontend/` and `backend/` | [Arpit-oo/signal-clone](https://github.com/Arpit-oo/signal-clone) |
+| Public repository containing `frontend/` and `backend/` | [Arpit-oo/Signal-Clone-Scalar](https://github.com/Arpit-oo/Signal-Clone-Scalar) |
 | README: setup, stack, architecture, schema, assumptions, API overview | This README, [ARCHITECTURE.md](ARCHITECTURE.md), [ROUTES.md](ROUTES.md), service guides |
 | Hosted working demo | **Final release deployment pending by request.** The locally verified release has not been deployed. |
 | Submit GitHub and deployed application links | Repository is ready; confirm/update the hosted link after final deployment. |
