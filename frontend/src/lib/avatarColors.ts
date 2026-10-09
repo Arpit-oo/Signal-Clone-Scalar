@@ -1,4 +1,4 @@
-// Palette reference: Signal Desktop/stylesheets/_variables.scss, avatar colors.
+// Signal's avatar palette: light backgrounds with saturated initials.
 // Green and burlap foregrounds are slightly darker so small initials meet AA too.
 export const AVATAR_COLORS: Record<string, string> = {
   A100: "#e3e3fe",

@@ -28,9 +28,7 @@ def upgrade() -> None:
             sa.text(
                 "UPDATE users SET avatar_url=:url "
                 "WHERE phone=:phone AND username=:username AND avatar_url IS NULL"
-            ).bindparams(
-                url=f"/api/demo-avatars/{username}-v1.jpg", phone=phone, username=username
-            )
+            ).bindparams(url=f"/api/demo-avatars/{username}-v1.jpg", phone=phone, username=username)
         )
 
 
@@ -40,7 +38,5 @@ def downgrade() -> None:
             sa.text(
                 "UPDATE users SET avatar_url=NULL "
                 "WHERE phone=:phone AND username=:username AND avatar_url=:url"
-            ).bindparams(
-                url=f"/api/demo-avatars/{username}-v1.jpg", phone=phone, username=username
-            )
+            ).bindparams(url=f"/api/demo-avatars/{username}-v1.jpg", phone=phone, username=username)
         )

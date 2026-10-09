@@ -22,7 +22,9 @@ def _canonical_phone(raw):
     try:
         number = phonenumbers.parse(digits, None if digits.startswith("+") else "IN")
         international = phonenumbers.format_number(number, phonenumbers.PhoneNumberFormat.E164)
-        if re.fullmatch(r"\+[6-9][0-9]{9}", international) and not phonenumbers.is_valid_number(number):
+        if re.fullmatch(r"\+[6-9][0-9]{9}", international) and not phonenumbers.is_valid_number(
+            number
+        ):
             national = phonenumbers.parse(international[1:], "IN")
             if phonenumbers.is_valid_number(national):
                 number = national

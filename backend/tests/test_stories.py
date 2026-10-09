@@ -290,7 +290,7 @@ with TestClient(app) as client:
         profile = client.patch('/api/me', headers=headers, json={'display_name': name})
         assert profile.status_code == 200, profile.text
         return headers, profile.json()['id']
-    alice, alice_id = register('+919876543210', 'Piyush')
+    alice, alice_id = register('+919876543210', 'Rohan')
     bob, bob_id = register('+447700900123', 'Jane')
     carol, _ = register('+15552223333', 'Carol')
     picture = io.BytesIO()

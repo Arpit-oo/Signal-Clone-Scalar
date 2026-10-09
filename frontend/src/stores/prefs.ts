@@ -40,7 +40,7 @@ interface PrefsState {
   notificationContent: NotificationContent;
   notificationSound: boolean;
   callRingtone: boolean;
-  /** Signal Desktop sends on Enter; Shift+Enter inserts a newline. */
+  /** Enter sends, as in Signal; Shift+Enter inserts a newline. */
   sendWithEnter: boolean;
   spellCheck: boolean;
   leftPaneWidth: number;

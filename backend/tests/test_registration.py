@@ -48,48 +48,48 @@ def test_fresh_accounts_onboard_discover_and_exchange_messages(client):
     profile = client.patch(
         "/api/me",
         headers=headers,
-        json={"display_name": "  Piyush  ", "username": "  Piyush_India  ", "about": "Hello"},
+        json={"display_name": "  Rohan  ", "username": "  Rohan_India  ", "about": "Hello"},
     )
     assert profile.status_code == 200
-    assert profile.json()["display_name"] == "Piyush"
-    assert profile.json()["username"] == "piyush_india"
-    piyush = Account(client, "+919876543210", "Piyush")
+    assert profile.json()["display_name"] == "Rohan"
+    assert profile.json()["username"] == "rohan_india"
+    rohan = Account(client, "+919876543210", "Rohan")
     jane = Account(client, "+44 (7700) 900-123", "Jane")
     raj = Account(client, "+91 98765 43211", "Raj")
 
-    for lookup in ({"phone": phone}, {"username": " @PIYUSH_INDIA "}):
+    for lookup in ({"phone": phone}, {"username": " @ROHAN_INDIA "}):
         found = jane.get("/api/users/lookup", params=lookup)
         assert found.status_code == 200, found.text
-        assert found.json()["id"] == piyush.id
-    assert jane.get("/api/users/search", params={"q": "98765 43210"}).json()[0]["id"] == piyush.id
-    contact = jane.post("/api/contacts", json={"username": "@piyush_india", "nickname": "Friend"})
+        assert found.json()["id"] == rohan.id
+    assert jane.get("/api/users/search", params={"q": "98765 43210"}).json()[0]["id"] == rohan.id
+    contact = jane.post("/api/contacts", json={"username": "@rohan_india", "nickname": "Friend"})
     assert contact.status_code == 201, contact.text
     assert jane.get("/api/contacts").json()[0]["nickname"] == "Friend"
-    assert piyush.get("/api/contacts").json() == []
+    assert rohan.get("/api/contacts").json() == []
 
-    cid = direct_chat(jane, piyush)
+    cid = direct_chat(jane, rohan)
     incoming = send(jane, cid, "Hello from a fresh account")
-    view = piyush.get(f"/api/conversations/{cid}").json()
+    view = rohan.get(f"/api/conversations/{cid}").json()
     assert view["unread_count"] == 1
     assert (
-        piyush.post(f"/api/conversations/{cid}/read", json={"up_to_id": incoming["id"]}).status_code
+        rohan.post(f"/api/conversations/{cid}/read", json={"up_to_id": incoming["id"]}).status_code
         == 204
     )
     history = jane.get(f"/api/conversations/{cid}/messages").json()["items"]
     assert history[0]["status"] == "read"
-    send(piyush, cid, "Hello back")
+    send(rohan, cid, "Hello back")
     assert [m["body"] for m in jane.get(f"/api/conversations/{cid}/messages").json()["items"]] == [
         "Hello from a fresh account",
         "Hello back",
     ]
 
-    group = piyush.post(
+    group = rohan.post(
         "/api/conversations", json={"type": "group", "name": "Friends", "member_ids": [jane.id]}
     )
     assert group.status_code == 201, group.text
     gid = group.json()["id"]
     assert (
-        piyush.post(f"/api/conversations/{gid}/members", json={"user_ids": [raj.id]}).status_code
+        rohan.post(f"/api/conversations/{gid}/members", json={"user_ids": [raj.id]}).status_code
         == 200
     )
     send(raj, gid, "New member joined")
@@ -97,7 +97,7 @@ def test_fresh_accounts_onboard_discover_and_exchange_messages(client):
         jane.get(f"/api/conversations/{gid}/messages").json()["items"][-1]["body"]
         == "New member joined"
     )
-    assert piyush.delete(f"/api/conversations/{gid}/members/{raj.id}").status_code == 200
+    assert rohan.delete(f"/api/conversations/{gid}/members/{raj.id}").status_code == 200
     assert (
         raj.post(
             f"/api/conversations/{gid}/messages",
@@ -108,10 +108,9 @@ def test_fresh_accounts_onboard_discover_and_exchange_messages(client):
 
     returning = client.post("/api/auth/verify", json={"phone": phone, "code": "123456"}).json()
     assert returning["is_new"] is False
-    assert returning["user"]["id"] == piyush.id
+    assert returning["user"]["id"] == rohan.id
     assert (
-        len([c for c in piyush.get("/api/conversations").json() if c["type"] == "note_to_self"])
-        == 1
+        len([c for c in rohan.get("/api/conversations").json() if c["type"] == "note_to_self"]) == 1
     )
 
 

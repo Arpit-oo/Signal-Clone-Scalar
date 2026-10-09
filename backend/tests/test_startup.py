@@ -92,7 +92,7 @@ with TestClient(app) as client:
         assert profile.status_code == 200, profile.text
         return auth.json()['user']['id'], headers
 
-    alice_id, alice = signup('+91 (98765) 43210', 'Piyush')
+    alice_id, alice = signup('+91 (98765) 43210', 'Rohan')
     bob_id, bob = signup('+44 (7700) 900123', 'Jane')
     assert client.get('/api/contacts', headers=alice).json() == []
     direct = client.post('/api/conversations', headers=alice,
@@ -194,7 +194,7 @@ config = Config(str(BASE_DIR / 'alembic.ini'))
 config.set_main_option('script_location', str(BASE_DIR / 'alembic'))
 command.upgrade(config, '30b3daecbcab')
 connection = sqlite3.connect(make_url(get_settings().database_url).database)
-for user_id, phone, name in [(1, '+919876543210', 'Piyush'), (2, '+447700900123', 'Jane')]:
+for user_id, phone, name in [(1, '+919876543210', 'Rohan'), (2, '+447700900123', 'Jane')]:
     connection.execute('''INSERT INTO users
         (id, phone, display_name, about, avatar_color, read_receipts_enabled,
          typing_indicators_enabled, created_at)
