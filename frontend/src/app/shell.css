@@ -1,0 +1,11 @@
+/* Keep imports in this order: base rules precede shared responsive overrides. */
+@import "./styles/shared-controls.css";
+@import "./styles/messenger-layout.css";
+@import "./styles/conversations.css";
+@import "./styles/messenger-welcome.css";
+@import "./styles/search-and-menus.css";
+@import "./styles/details-new-chat.css";
+@import "./styles/settings-profile.css";
+@import "./styles/authentication.css";
+@import "./styles/responsive.css";
+@import "./styles/product-polish.css";
