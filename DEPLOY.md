@@ -22,12 +22,12 @@ The free Render service uses ephemeral local SQLite storage and uploaded files. 
 
    - `API_ORIGIN=https://<render-service>.onrender.com`
    - `NEXT_PUBLIC_WS_URL=wss://<render-service>.onrender.com`
-   - `NEXT_PUBLIC_RTC_ICE_SERVERS=[]`
+   - `NEXT_PUBLIC_RTC_ICE_SERVERS=[{"urls":"stun:stun.l.google.com:19302"},{"urls":"stun:stun1.l.google.com:19302"}]`
 
 5. Deploy the project and copy its public URL.
 6. Return to Render and set `CORS_ORIGINS` to that exact Vercel origin without a trailing slash, then redeploy the API.
 
-The Next.js server proxies REST and media requests through `API_ORIGIN`. The browser connects directly to the backend WebSocket using `NEXT_PUBLIC_WS_URL`, so both values must point to the same Render service.
+The Next.js server proxies REST and media requests through `API_ORIGIN`. The browser connects directly to the backend WebSocket using `NEXT_PUBLIC_WS_URL`, so both values must point to the same Render service. The frontend falls back to Google STUN when the ICE variable is absent or empty; use the optional TURN setup for restrictive networks.
 
 ## Demo login
 
